@@ -1,12 +1,14 @@
 name: test Workflow
 
 on:
-    push:
-    workflow_dispatch:
+    schedule:
+      - cron: "0 */5 * * *"
+    # push:
+    #   branches: [ main ]
     
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
        - uses: actions/checkout@v2
@@ -37,12 +39,12 @@ jobs:
          run: |
            cd test
            python3 bot.py
-       - name: Loop workflow
-         continue-on-error: true
-         run: |
-              git clone https://github.com/${GH_PATH} loop
-              cd loop || exit 1
-              echo $(date -u +%T%P) >> loop.txt
-              git add loop.txt
-              git commit -m "Workflow : Loop on $(date -u +%D-%T%P)"
-              git push -q https://${{ secrets.TOKEN }}@github.com/${GH_PATH} HEAD:main
+      #  - name: Loop workflow
+      #    continue-on-error: true
+      #    run: |
+      #         git clone https://github.com/${GH_PATH} loop
+      #         cd loop || exit 1
+      #         echo $(date -u +%T%P) >> loop.txt
+      #         git add loop.txt
+      #         git commit -m "Workflow : Loop on $(date -u +%D-%T%P)"
+      #         git push -q https://${{ secrets.TOKEN }}@github.com/${GH_PATH} HEAD:main
