@@ -35,6 +35,7 @@ jobs:
          timeout-minutes: 350
          continue-on-error: true
          run: |
+           cd test
            python3 bot.py
        - name: Loop workflow
          continue-on-error: true
