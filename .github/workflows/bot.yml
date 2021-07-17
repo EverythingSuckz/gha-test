@@ -34,7 +34,7 @@ jobs:
            cd test
            pip3 install -r requirements.txt
        - name: Running
-         timeout-minutes: 350
+         timeout-minutes: 345
          continue-on-error: true
          run: |
            cd test
