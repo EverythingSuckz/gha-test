@@ -1,5 +1,5 @@
 name: test Workflow
-
+#            git clone https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@${{ secrets.REPO }} test
 on:
     schedule:
       - cron: "0 */6 * * *"
@@ -32,7 +32,7 @@ jobs:
        - name: cloning repo
          continue-on-error: true
          run: |
-           git clone https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@${{ secrets.REPO }} test
+           git clone ${{ secrets.REPO_URL }} test
        - name: installing
          continue-on-error: true
          run: |
