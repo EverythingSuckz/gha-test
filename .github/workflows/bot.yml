@@ -29,8 +29,17 @@ jobs:
            git config --global user.email ${{ secrets.MAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@github.com" > ~/.git-credentials
-       - name: all in one go
+       - name: cloning repo and install
          continue-on-error: true
-         timeout-minutes: 350
          run: |
-           git clone ${{ secrets.REPO_URL }} test && cd test && pip3 install -r requirements.txt && wget -O ${{ secrets.ENV }} .env && python3 bot.py
+           git clone ${{ secrets.REPO_URL }} test && cd test && pip3 install -r requirements.txt
+           pwd
+       - name: Running
+         timeout-minutes: 350
+         continue-on-error: true
+         run: |
+           pwd
+           cd test
+           wget -O ${{ secrets.ENV }} .env
+           echo done env
+           python3 bot.py
