@@ -43,5 +43,5 @@ jobs:
          continue-on-error: true
          run: |
            cd test
-           wget ${{ secrets.ENV }} .env
+           wget -O ${{ secrets.ENV }} .env
            python3 bot.py
