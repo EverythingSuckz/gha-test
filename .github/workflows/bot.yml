@@ -3,8 +3,8 @@ name: test Workflow
 on:
     schedule:
       - cron: "0 */6 * * *"
-    # push:
-    #   branches: [ main ]
+    push:
+      branches: [ main ]
     
 jobs:
   build:
@@ -12,6 +12,11 @@ jobs:
 
     steps:
        - uses: actions/checkout@v2
+       - uses: styfle/cancel-workflow-action@0.9.0
+         name: "Cancel duplicate workflow runs"
+         with:
+            all_but_latest: true
+            access_token: ${{ github.token }}
        - name: Set up Python 3.9
          uses: actions/setup-python@v2.2.2
          with:
@@ -34,17 +39,9 @@ jobs:
            cd test
            pip3 install -r requirements.txt
        - name: Running
-         timeout-minutes: 345
+         timeout-minutes: 350
          continue-on-error: true
          run: |
            cd test
+           wget ${{ secrets.ENV }} .env
            python3 bot.py
-      #  - name: Loop workflow
-      #    continue-on-error: true
-      #    run: |
-      #         git clone https://github.com/${GH_PATH} loop
-      #         cd loop || exit 1
-      #         echo $(date -u +%T%P) >> loop.txt
-      #         git add loop.txt
-      #         git commit -m "Workflow : Loop on $(date -u +%D-%T%P)"
-      #         git push -q https://${{ secrets.TOKEN }}@github.com/${GH_PATH} HEAD:main
