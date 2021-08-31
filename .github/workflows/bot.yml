@@ -29,16 +29,11 @@ jobs:
            git config --global user.email ${{ secrets.MAIL }}
            git config --global credential.helper store
            echo "https://${{ secrets.NAME }}:${{ secrets.TOKEN }}@github.com" > ~/.git-credentials
-       - name: cloning repo
+       - name: cloning repo and install
          continue-on-error: true
          run: |
-           git clone ${{ secrets.REPO_URL }} test
-       - name: installing
-         continue-on-error: true
-         run: |
-           cd test
+           git clone ${{ secrets.REPO_URL }} test && cd test $$ pip3 install -r requirements.txt
            pwd
-           pip3 install -r requirements.txt
        - name: Running
          timeout-minutes: 350
          continue-on-error: true
