@@ -40,6 +40,6 @@ jobs:
          run: |
            pwd
            cd test
-           wget -O ${{ secrets.ENV }}
+           wget -O .env ${{ secrets.ENV }}
            echo done env
            python3 bot.py
