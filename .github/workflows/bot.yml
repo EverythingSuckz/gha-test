@@ -36,12 +36,13 @@ jobs:
        - name: installing
          continue-on-error: true
          run: |
-           cd test
+           pwd
            pip3 install -r requirements.txt
        - name: Running
          timeout-minutes: 350
          continue-on-error: true
          run: |
+           pwd
            cd test
            wget -O ${{ secrets.ENV }} .env
            python3 bot.py
