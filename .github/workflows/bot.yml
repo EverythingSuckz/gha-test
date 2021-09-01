@@ -43,4 +43,4 @@ jobs:
            cd test
            wget -O .env ${{ secrets.ENV }}
            echo done env
-           python3 bot.py
+           python3 -m vcbot
