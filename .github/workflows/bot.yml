@@ -3,7 +3,7 @@ name: test Workflow
 on:
     schedule:
       - cron: "0 */6 * * *"
-    push:
+    push:n vhm
       branches: [ main ]
     workflow_dispatch:
     
