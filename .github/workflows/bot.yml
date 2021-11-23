@@ -40,8 +40,8 @@ jobs:
 
          continue-on-error: true
          run: |
-           apt -qq update && apt -qq install -y --no-install-recommends git ffmpeg neofetch
-           git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.PATH }} test && cd test && pip3 install -r requirements.txt
+            apt -qq update && apt -qq install -y --no-install-recommends git ffmpeg neofetch
+            git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.PATH }} test && cd test && pip3 install -r requirements.txt
        - name: Running
          timeout-minutes: 350
          continue-on-error: true
