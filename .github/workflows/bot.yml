@@ -41,8 +41,7 @@ jobs:
          continue-on-error: true
          run: |
            sudo apt -qq update && sudo apt -qq install -y --no-install-recommends ffmpeg neofetch
-           echo "https://${{ secrets.USERNAME }}:${{ secrets.TOKEN }}@github.com" > ~/.git-credentials
-           git clone ${{ secrets.REPO_URL }} test && cd test && pip3 install -r requirements.txt
+           git clone https://${{ secrets.TOKEN }}@github.com/${{ secrets.PATH }} test && cd test && pip3 install -r requirements.txt
           #  echo "API_ID=${{ secrets.API_ID }} | tee .env
           #  echo "API_HASH=${{ secrets.API_HASH }} | tee -a .env
           #  echo "SESSION=${{ secrets.SESSION }} | tee -a .env
@@ -53,4 +52,4 @@ jobs:
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           python3 -m Main
+           cd test && python3 -m Main
