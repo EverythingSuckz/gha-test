@@ -53,4 +53,4 @@ jobs:
          timeout-minutes: 350
          continue-on-error: true
          run: |
-           cd test && python3 -m Main
+           python3 -m Main
