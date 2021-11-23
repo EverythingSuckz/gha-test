@@ -11,11 +11,10 @@ env:
   API_HASH: "${{ secrets.API_HASH }}"
   SESSION: "${{ secrets.SESSION }}"
   BOT_TOKEN: "${{ secrets.BOT_TOKEN }}"
-  SESSION: "${{ secrets.SESSION }}"
   DB_URL: "${{ secrets.DB_URL }}"
   NSFW_API: "${{ secrets.NSFW_API }}"
   PASSWORD: "${{ secrets.PASSWORD }}"
-  LOG_ID ="${{ secrets.LOG_ID }}"
+  LOG_ID: "${{ secrets.LOG_ID }}"
 
 jobs:
   build:
